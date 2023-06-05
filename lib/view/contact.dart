@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fb1/controller/contact_controller.dart';
 import 'package:fb1/view/add_contact.dart';
+import 'package:fb1/view/update_contact.dart';
 import 'package:flutter/material.dart';
 
 class Contact extends StatefulWidget {
@@ -52,6 +53,18 @@ class _ContactState extends State<Contact> {
                         padding: const EdgeInsets.all(8.0),
                         child: InkWell(
                           onLongPress: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => UpdateContact(
+                                  id: data[index]['id'],
+                                  name: data[index]['name'],
+                                  phone: data[index]['phone'],
+                                  email: data[index]['email'],
+                                  address: data[index]['address'],
+                                ),
+                              )
+                              );
                           },
                           child: Card(
                             elevation: 8,

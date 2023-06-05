@@ -1,5 +1,6 @@
 import 'package:fb1/view/add_contact.dart';
 import 'package:fb1/view/contact.dart';
+import 'package:fb1/view/update_contact.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 

@@ -58,21 +58,26 @@ class _AddContactState extends State<AddContact> {
                 },
               ),
               TextButton(
-                onPressed: () {
-                  ContactModel cm = ContactModel(
-                    name: name!,
-                    phone: phone!,
-                    email: email!,
-                    address: address!,
-                  );
-                  contactController.addContact(cm);
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const Contact(),
-                      ));
-                }, 
-                child: Text('add'))
+                  style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(Colors.blue),
+                      foregroundColor: MaterialStateProperty.all(Colors.white)),
+                  onPressed: () {
+                    ContactModel cm = ContactModel(
+                      name: name!,
+                      phone: phone!,
+                      email: email!,
+                      address: address!,
+                    );
+                    contactController.addContact(cm);
+                    ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Contact Changed')));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const Contact(),
+                        ));
+                  },
+                  child: Text('add'))
             ],
           ),
         ),
