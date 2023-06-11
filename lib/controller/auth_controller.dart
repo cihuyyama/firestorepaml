@@ -1,8 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
-
-import '../model/user_model.dart';
+import 'package:fb1/model/user_model.dart';
 
 class AuthController {
   final FirebaseAuth auth = FirebaseAuth.instance;
@@ -23,7 +21,10 @@ class AuthController {
             await usersCollection.doc(user.uid).get();
 
         final UserModel currentUser = UserModel(
-            Name: snapshot['name'], email: user.email ?? '', uId: user.uid);
+          Uid: user.uid,
+          email: user.email ?? '',
+          name: snapshot['name'] ?? '',
+        );
 
         return currentUser;
       }
@@ -40,10 +41,11 @@ class AuthController {
           .createUserWithEmailAndPassword(email: email, password: password);
       final User? user = userCredential.user;
 
-      if (user!=null) {
-        final UserModel newUser = UserModel(Name: name, email: email ?? '', uId: user.uid);
+      if (user != null) {
+        final UserModel newUser =
+            UserModel(name: name, email: email ?? '', Uid: user.uid);
 
-        await usersCollection.doc(newUser.uId).set(newUser.toMap());
+        await usersCollection.doc(newUser.Uid).set(newUser.toMap());
 
         return newUser;
       }
@@ -52,5 +54,15 @@ class AuthController {
     }
   }
 
-  
+  UserModel? getCurrentUser() {
+    final User? user = auth.currentUser;
+    if (user != null) {
+      return UserModel.fromFirebaseUser(user);
+    }
+    return null;
+  }
+
+  Future<void> signOut() async {
+    await auth.signOut();
+  }
 }

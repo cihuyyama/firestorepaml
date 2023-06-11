@@ -1,6 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
+import 'package:fb1/model/user_model.dart';
+
 class ContactModel {
   String? id;
   final String name;
@@ -38,4 +40,6 @@ class ContactModel {
   String toJson() => json.encode(toMap());
 
   factory ContactModel.fromJson(String source) => ContactModel.fromMap(json.decode(source) as Map<String, dynamic>);
+
+  
 }

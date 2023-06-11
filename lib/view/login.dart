@@ -55,7 +55,7 @@ class Login extends StatelessWidget {
                               actions: <Widget>[
                                 TextButton(
                                   onPressed: () {
-                                    print(registeredUser.Name);
+                                    print(registeredUser.name);
                                     Navigator.push(context,
                                         MaterialPageRoute(builder: (context) {
                                       return Contact();

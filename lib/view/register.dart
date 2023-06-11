@@ -1,5 +1,6 @@
 import 'package:fb1/controller/auth_controller.dart';
 import 'package:fb1/model/user_model.dart';
+import 'package:fb1/view/login.dart';
 import 'package:flutter/material.dart';
 
 class Register extends StatefulWidget {
@@ -36,13 +37,13 @@ class _RegisterState extends State<Register> {
                 },
               ),
               TextFormField(
-                decoration: InputDecoration(hintText: 'Phone'),
+                decoration: InputDecoration(hintText: 'email'),
                 onChanged: (value) {
                   email = value;
                 },
               ),
               TextFormField(
-                decoration: InputDecoration(hintText: 'Email'),
+                decoration: InputDecoration(hintText: 'password'),
                 onChanged: (value) {
                   password = value;
                 },
@@ -65,11 +66,11 @@ class _RegisterState extends State<Register> {
                             actions: <Widget>[
                               TextButton(
                                 onPressed: () {
-                                  print(registeredUser.Name);
-                                  // Navigator.push(context,
-                                  //     MaterialPageRoute(builder: (context) {
-                                  //   return Login();
-                                  // }));
+                                  print(registeredUser.name);
+                                  Navigator.push(context,
+                                      MaterialPageRoute(builder: (context) {
+                                    return Login();
+                                  }));
                                   // Navigate to the next screen or perform any desired action
                                 },
                                 child: const Text('OK'),

@@ -1,33 +1,65 @@
 import 'dart:convert';
 
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:firebase_auth/firebase_auth.dart';
+
 class UserModel {
-  String Name;
+  String name;
   String email;
-  String uId;
+  String Uid;
   UserModel({
-    required this.Name,
+    required this.name,
     required this.email,
-    required this.uId,
+    required this.Uid,
   });
 
   Map<String, dynamic> toMap() {
-    return <String, dynamic>{
-      'Name': Name,
+    return {
+      'name': name,
       'email': email,
-      'uId': uId,
+      'Uid': Uid,
     };
   }
 
   factory UserModel.fromMap(Map<String, dynamic> map) {
     return UserModel(
-      Name: map['Name'] as String,
-      email: map['email'] as String,
-      uId: map['uId'] as String,
+      name: map['name'] ?? '',
+      email: map['email'] ?? '',
+      Uid: map['Uid'] ?? '',
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory UserModel.fromJson(String source) => UserModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory UserModel.fromJson(String source) =>
+      UserModel.fromMap(json.decode(source));
+
+  UserModel copyWith({
+    String? name,
+    String? email,
+    String? Uid,
+  }) {
+    return UserModel(
+      name: name ?? this.name,
+      email: email ?? this.email,
+      Uid: Uid ?? this.Uid,
+    );
+  }
+
+  @override
+  String toString() => 'UserModel(name: $name, email: $email, Uid: $Uid)';
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is UserModel &&
+        other.name == name &&
+        other.email == email &&
+        other.Uid == Uid;
+  }
+
+  @override
+  int get hashCode => name.hashCode ^ email.hashCode ^ Uid.hashCode;
+
+  static UserModel? fromFirebaseUser(User user) {}
 }
