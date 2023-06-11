@@ -1,5 +1,7 @@
 import 'package:fb1/view/add_contact.dart';
 import 'package:fb1/view/contact.dart';
+import 'package:fb1/view/login.dart';
+import 'package:fb1/view/register.dart';
 import 'package:fb1/view/update_contact.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +24,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const Contact(),
+      home: Login(),
     );
   }
 }
